@@ -1,10 +1,10 @@
 Modern Calorie Calculator
 A clean, modern, and responsive web application to help you estimate your daily calorie needs for maintenance, weight loss, or weight gain. The calculator uses the accurate Mifflin-St Jeor equation, which is widely considered the modern standard for BMR calculation.
 
- <!-- Replace with your actual Vercel URL -->
+
 
 🚀 Live Demo
-Check out the live application here:
+Check out the live application here: https://moderncaloriecalculator.vercel.app/
 
 ✨ Features
 Modern & Clean UI: A visually appealing interface designed for a great user experience.
@@ -43,7 +43,7 @@ Since this is a simple HTML file with no build step, you can run it locally with
 
 Clone the repository:
 
-git clone [https://github.com/your-username/calorie-calculator-app.git](https://github.com/your-username/calorie-calculator-app.git)
+git clone [https://github.com/ayn-png/calorie-calculator-app.git](https://github.com/ayn-png/calorie-calculator-app.git)
 
 <!-- Replace 'your-username' and 'calorie-calculator-app' with your details -->
 
