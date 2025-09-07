@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calorie Calculator</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles to enhance Tailwind's capabilities */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom focus ring color */
+        input[type="number"]:focus, input[type="radio"]:focus + label {
+            outline: none;
+            --tw-ring-color: #6366f1; /* indigo-500 */
+            box-shadow: 0 0 0 2px var(--tw-ring-color);
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+
+    <!-- Main Calculator Card -->
+    <div class="w-full max-w-3xl bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800">Calorie Calculator</h1>
+            <p class="text-slate-500 mt-2">Estimate your daily calorie needs with the Mifflin-St Jeor equation.</p>
+        </header>
+
+        <main id="calculator-form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Left Column: Personal Info -->
+                <div class="space-y-6">
+                    <!-- Gender Input -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Gender</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <input type="radio" name="gender" id="male" value="male" class="peer hidden" checked>
+                                <label for="male" class="block cursor-pointer text-center p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-600 font-semibold transition-all duration-200">Male</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="gender" id="female" value="female" class="peer hidden">
+                                <label for="female" class="block cursor-pointer text-center p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-600 font-semibold transition-all duration-200">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Age Input -->
+                    <div>
+                        <label for="age" class="block text-sm font-bold text-slate-700 mb-2">Age</label>
+                        <input type="number" id="age" name="age" placeholder="e.g., 25" class="w-full p-3 border border-slate-300 rounded-lg transition-all duration-200">
+                    </div>
+                     <!-- Weight Input -->
+                    <div>
+                        <label for="weight" class="block text-sm font-bold text-slate-700 mb-2">Weight (kg)</label>
+                        <input type="number" id="weight" name="weight" placeholder="e.g., 70" class="w-full p-3 border border-slate-300 rounded-lg transition-all duration-200">
+                    </div>
+                    <!-- Height Input -->
+                    <div>
+                        <label for="height" class="block text-sm font-bold text-slate-700 mb-2">Height (cm)</label>
+                        <input type="number" id="height" name="height" placeholder="e.g., 180" class="w-full p-3 border border-slate-300 rounded-lg transition-all duration-200">
+                    </div>
+                </div>
+
+                <!-- Right Column: Activity Level -->
+                <div class="space-y-3">
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Activity Level</label>
+                    <div class="space-y-3">
+                        <div>
+                            <input type="radio" name="activity" id="sedentary" value="1.2" class="peer hidden" checked>
+                            <label for="sedentary" class="block cursor-pointer p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 transition-all duration-200">
+                                <p class="font-semibold text-slate-800 peer-checked:text-indigo-600">Sedentary</p>
+                                <p class="text-xs text-slate-500">Little or no exercise</p>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="activity" id="light" value="1.375" class="peer hidden">
+                            <label for="light" class="block cursor-pointer p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 transition-all duration-200">
+                                <p class="font-semibold text-slate-800 peer-checked:text-indigo-600">Lightly Active</p>
+                                <p class="text-xs text-slate-500">Light exercise/sports 1-3 days/week</p>
+                            </label>
+                        </div>
+                         <div>
+                            <input type="radio" name="activity" id="moderate" value="1.55" class="peer hidden">
+                            <label for="moderate" class="block cursor-pointer p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 transition-all duration-200">
+                                <p class="font-semibold text-slate-800 peer-checked:text-indigo-600">Moderately Active</p>
+                                <p class="text-xs text-slate-500">Moderate exercise/sports 3-5 days/week</p>
+                            </label>
+                        </div>
+                         <div>
+                            <input type="radio" name="activity" id="very" value="1.725" class="peer hidden">
+                            <label for="very" class="block cursor-pointer p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 transition-all duration-200">
+                                <p class="font-semibold text-slate-800 peer-checked:text-indigo-600">Very Active</p>
+                                <p class="text-xs text-slate-500">Hard exercise/sports 6-7 days a week</p>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="activity" id="extra" value="1.9" class="peer hidden">
+                            <label for="extra" class="block cursor-pointer p-3 rounded-lg border border-slate-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 transition-all duration-200">
+                                <p class="font-semibold text-slate-800 peer-checked:text-indigo-600">Extra Active</p>
+                                <p class="text-xs text-slate-500">Very hard exercise & physical job</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons & Error Message -->
+            <div class="mt-8">
+                <button id="calculate-btn" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 text-lg">
+                    Calculate Calories
+                </button>
+                <div id="error-message" class="hidden mt-4 p-3 bg-red-100 text-red-700 rounded-lg text-center font-medium">
+                    Please fill in all fields.
+                </div>
+            </div>
+        </main>
+        
+        <!-- Results Section (Initially Hidden) -->
+        <section id="results" class="hidden mt-8 text-center">
+            <h2 class="text-2xl font-bold text-slate-800">Your Results</h2>
+            
+            <div class="mt-6 bg-slate-50 p-6 rounded-lg">
+                <p class="text-slate-600">Your estimated daily maintenance calories are:</p>
+                <p id="tdee-result" class="text-4xl sm:text-5xl font-extrabold text-indigo-600 my-2">2,500</p>
+                <p class="text-sm text-slate-500">
+                    Basal Metabolic Rate (BMR): <span id="bmr-result" class="font-semibold">1,800</span> Calories
+                </p>
+            </div>
+
+            <div class="mt-6">
+                <h3 class="text-xl font-bold text-slate-700 mb-4">Calorie Goals</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <p class="font-semibold text-slate-600">Mild Weight Loss</p>
+                        <p class="text-lg font-bold text-indigo-600 mt-1"><span id="mild-loss">2,250</span> Calories/day</p>
+                        <p class="text-xs text-slate-500">0.25 kg/week</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <p class="font-semibold text-slate-600">Weight Loss</p>
+                        <p class="text-lg font-bold text-indigo-600 mt-1"><span id="weight-loss">2,000</span> Calories/day</p>
+                        <p class="text-xs text-slate-500">0.5 kg/week</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-slate-200">
+                        <p class="font-semibold text-slate-600">Mild Weight Gain</p>
+                        <p class="text-lg font-bold text-indigo-600 mt-1"><span id="mild-gain">2,750</span> Calories/day</p>
+                        <p class="text-xs text-slate-500">0.25 kg/week</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Element References ---
+            const calculateBtn = document.getElementById('calculate-btn');
+            const errorMessage = document.getElementById('error-message');
+            const resultsSection = document.getElementById('results');
+            
+            const ageInput = document.getElementById('age');
+            const weightInput = document.getElementById('weight');
+            const heightInput = document.getElementById('height');
+            
+            const bmrResultEl = document.getElementById('bmr-result');
+            const tdeeResultEl = document.getElementById('tdee-result');
+            const mildLossEl = document.getElementById('mild-loss');
+            const weightLossEl = document.getElementById('weight-loss');
+            const mildGainEl = document.getElementById('mild-gain');
+
+            const formInputs = [ageInput, weightInput, heightInput];
+
+            // --- Event Listeners ---
+            calculateBtn.addEventListener('click', handleCalculation);
+
+            // Hide error message when user starts typing
+            formInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    if (!errorMessage.classList.contains('hidden')) {
+                        errorMessage.classList.add('hidden');
+                    }
+                });
+            });
+            document.querySelectorAll('input[name="gender"], input[name="activity"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                     if (!errorMessage.classList.contains('hidden')) {
+                        errorMessage.classList.add('hidden');
+                    }
+                });
+            });
+
+
+            // --- Main Calculation Logic ---
+            function handleCalculation() {
+                // 1. Validate Inputs
+                const age = parseInt(ageInput.value);
+                const weight = parseFloat(weightInput.value);
+                const height = parseFloat(heightInput.value);
+                const gender = document.querySelector('input[name="gender"]:checked');
+                const activityMultiplier = document.querySelector('input[name="activity"]:checked');
+
+                if (isNaN(age) || isNaN(weight) || isNaN(height) || !gender || !activityMultiplier) {
+                    errorMessage.classList.remove('hidden');
+                    resultsSection.classList.add('hidden');
+                    return;
+                }
+                
+                errorMessage.classList.add('hidden');
+
+                // 2. Calculate BMR (Mifflin-St Jeor Equation)
+                let bmr;
+                if (gender.value === 'male') {
+                    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+                } else { // female
+                    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+                }
+
+                // 3. Calculate TDEE
+                const tdee = bmr * parseFloat(activityMultiplier.value);
+
+                // 4. Update the UI with results
+                displayResults(bmr, tdee);
+            }
+
+            // --- UI Update Function ---
+            function displayResults(bmr, tdee) {
+                const formatNumber = (num) => Math.round(num).toLocaleString('en-US');
+
+                bmrResultEl.textContent = formatNumber(bmr);
+                tdeeResultEl.textContent = formatNumber(tdee);
+                mildLossEl.textContent = formatNumber(tdee - 250);
+                weightLossEl.textContent = formatNumber(tdee - 500);
+                mildGainEl.textContent = formatNumber(tdee + 250);
+
+                // Show results and scroll to them smoothly
+                resultsSection.classList.remove('hidden');
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
